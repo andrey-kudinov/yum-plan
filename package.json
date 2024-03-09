@@ -7,16 +7,27 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "prettier-fix": "prettier \"src/**/*.{js,jsx}\" --ignore-path .gitignore --write --fix",
+    "eslint-fix": "eslint \"src/**/*.{js,jsx}\" --ignore-path .gitignore --fix ",
+    "stylelint-fix": "stylelint \"src/**/*.{css, scss}\" --fix"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --ignore-path .gitignore --fix",
+      "prettier --ignore-path .gitignore --write"
+    ],
+    "*.{css, scss}": "stylelint --fix"
   },
   "dependencies": {
-    "next": "14.1.3",
+    "next": "13.3.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hook-form": "^7.51.0"
   },
   "devDependencies": {
     "eslint": "^8",
-    "eslint-config-next": "14.1.3",
+    "eslint-config-next": "13.3.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-react": "^7.34.0",
@@ -26,8 +37,5 @@
     "prettier": "3.2.5",
     "stylelint": "^16.2.1",
     "stylelint-config-standard": "^36.0.0"
-  },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
   }
 }
