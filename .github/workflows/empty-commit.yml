@@ -13,7 +13,7 @@ jobs:
       - name: Set commit flags
         run: |
           git config commit.gpgsign false
-          git config user.email "github-action@example.com"
-          git config user.name "GitHub Action"
+          git config --global user.name "GitHub Action"
+          git config --global user.email "github-action@example.com"
       - name: Push commit
         run: git push
