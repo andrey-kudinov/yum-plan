@@ -38,6 +38,15 @@
 "rules": {
     "react/jsx-filename-extension": "off",
     "react/react-in-jsx-scope": "off",
-    "react/jsx-uses-react": "off"
+    "react/jsx-uses-react": "off",
+    "react/no-unknown-property": [
+        2,
+        {
+          "ignore": [
+            "jsx",
+            "global"
+          ]
+        }
+      ]
 }
 }
