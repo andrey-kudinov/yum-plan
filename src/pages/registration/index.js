@@ -1,20 +1,17 @@
+import RegLayout from '@/layouts/RegLayout/RegLayout'
+import RegistrationForm from '@/components/RegistrationForm/RegistrationForm'
 import Link from 'next/link'
-import styles from './styles.module.css'
+import styles from './registration.module.css'
+
 
 export default function Registration() {
   return (
-    <div className={styles['registration']}>
-      <h1>Регистрация</h1>
-      <form className={styles['registration-form']}>
-        <label>Ваше имя</label>
-        <input type="text" />
-        <label>E-mail</label>
-        <input type="text"/>
-        <label>Пароль</label>
-        <input type="password"/>
-        <button type="submit" >Зарегистрироваться</button>
+    <RegLayout>
+      <div className={styles['registration']}>
+        <h1>Регистрация</h1>
+        <RegistrationForm />
         <span>Уже есть аккаунт? <Link href="/login">Войти</Link></span>
-      </form>
-    </div>
+      </div>
+    </RegLayout>
   )
 }

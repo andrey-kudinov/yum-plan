@@ -4,8 +4,3 @@
     flex-direction: column;
     width: 40%;
 }
-
-.registration-form {
-    display: flex;
-    flex-direction: column;
-}

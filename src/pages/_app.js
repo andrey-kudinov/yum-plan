@@ -10,11 +10,16 @@ App.propTypes = {
 const defaultFont = Raleway({ subsets: ['latin'] })
 
 export default function App({ Component, pageProps }) {
+  
   return (
     <>
       <style jsx global>{`
         html {
           font-family: ${defaultFont.style.fontFamily};
+        }
+        
+        #__next {
+          height: 100%;
         }
       `}</style>
       <Component {...pageProps} />
