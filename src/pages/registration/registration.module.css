@@ -1,29 +1,30 @@
 .registration {
-    margin: auto;
-    background-color: #946565;
-    border-radius: 0.5rem;
-    display: flex;
-    justify-content: flex-end;
-    width: 60%;
+  margin: auto;
+  background-color: #946565;
+  box-shadow: 0 8px 32px rgb(34 90 139 / 8%),0 4px 16px rgb(34 90 139 / 8%),0 2px 4px rgb(34 90 139 / 4.04%);
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+  width: 60%;
 }
 
 .registration-block {
-    width: 70%;
-    padding: 1.5rem;
-    background-color: #f5f5f5;
-    border-top-right-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-    display: flex;
-    flex-direction: column;
+  width: 70%;
+  padding: 3rem 1.5rem;
+  background-color: #f5f5f5;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .registration-title {
-    text-align: center;
-    color: var(--primary-text-color);
+  text-align: center;
+  color: var(--primary-text-color);
 }
 
 .registration-already {
-    margin: 1rem 0 0;
-    color: var(--secondary-text-color);
-    text-align: center;
+  margin: 1rem 0 0;
+  color: var(--secondary-text-color);
+  text-align: center;
 }
