@@ -4,12 +4,12 @@ export default function RegistrationForm() {
   return (
     <form className={styles['registration-form']}>
       <label>Ваше имя</label>
-      <input type="text" />
+      <input className={styles['form-input']} type="text" />
       <label>E-mail</label>
-      <input type="text"/>
+      <input className={styles['form-input']} type="text"/>
       <label>Пароль</label>
-      <input type="password"/>
-      <button type="submit" >Зарегистрироваться</button>
+      <input className={styles['form-input']} type="password"/>
+      <button className={styles['form-button']} type="submit" >Зарегистрироваться</button>
     </form>
   )
 }

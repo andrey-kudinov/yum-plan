@@ -8,9 +8,13 @@ export default function Registration() {
   return (
     <RegLayout>
       <div className={styles['registration']}>
-        <h1>Регистрация</h1>
-        <RegistrationForm />
-        <span>Уже есть аккаунт? <Link href="/login">Войти</Link></span>
+        <div className={styles['registration-block']}>
+          <h1 className={styles['registration-title']}>Регистрация</h1>
+          <RegistrationForm />
+          <div className={styles['registration-already']}>
+            Уже есть аккаунт? <Link href="/login">Войти</Link>
+          </div>
+        </div>
       </div>
     </RegLayout>
   )
