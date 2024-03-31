@@ -13,6 +13,11 @@
   --primary-text-color: #362525;
   --secondary-text-color: #5a4949c9;
   --link-text-color: #9c2f2f;
+  --brand-color-1: #f8e5c3;
+  --brand-color-2: #d7b2ad;
+  --brand-color-3: #ab9b9e;
+  --brand-color-4: #7f848f;
+  --brand-color-5: #546e81;
 }
 
 html:focus-within {
@@ -21,7 +26,7 @@ html:focus-within {
 
 body {
   text-rendering: optimizespeed;
-  background-color: #d8c9c9;
+  background-color: var(--brand-color-1);
   width: 100%;
   height: 100vh;
   font-size: 1rem;
