@@ -1,11 +1,11 @@
-import { getProviders, signIn } from "next-auth/react"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/pages/api/auth/[...nextauth]"
+import { getProviders, signIn } from 'next-auth/react'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import Image from 'next/image'
 import signinBackgroundImg from 'public/images/signin-bg.jpg'
-import SigninLayout from "@/layouts/SigninLayout/SigninLayout"
-import LoginWithButton from "@/components/LoginWithButton/LoginWithButton"
-import styles from "./signin.module.css"
+import SigninLayout from '@/layouts/SigninLayout/SigninLayout'
+import LoginWithButton from '@/components/LoginWithButton/LoginWithButton'
+import styles from './signin.module.css'
 
 export default function Signin({ providers }) {
   return (
