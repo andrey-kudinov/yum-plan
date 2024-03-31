@@ -1,8 +1,8 @@
 import { getProviders, signIn } from "next-auth/react"
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "../api/auth/[...nextauth]"
-import SigninLayout from '@/layouts/SigninLayout/SigninLayout'
-import styles from './signin.module.css'
+import { authOptions } from "@/pages/api/auth/[...nextauth]"
+import SigninLayout from "@/layouts/SigninLayout/SigninLayout"
+import styles from "./signin.module.css"
 
 export default function Signin({ providers }) {
   return (
@@ -25,14 +25,19 @@ export default function Signin({ providers }) {
 
 export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res, authOptions)
-
+  
   if (session) {
-    return { redirect: { destination: "/" } }
+    return { 
+      redirect: { 
+        destination: "/",
+        permanent: false
+      }
+    }
   }
   
   const providers = await getProviders()
-
+  
   return {
-    props: { providers: providers ?? [] }
+    props: { providers: providers}
   }
 }
