@@ -19,7 +19,7 @@ export default function Signin({ providers }) {
           />
         </div>
         <div className={styles['signin-block']}>
-          <h1 className={styles['signin-title']}>Войти с помощью</h1>
+          <h2 className={styles['signin-title']}>Войти с помощью</h2>
             {Object.values(providers).map((provider) => (
               <LoginWithButton
                 key={provider.name}
