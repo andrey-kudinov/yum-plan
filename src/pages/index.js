@@ -1,7 +1,14 @@
+import { useSession, signOut } from 'next-auth/react'
+
 export default function Home() {
-  return (
-    <main>
-      <h1>Добро пожаловать!</h1>
-    </main>
-  )
+  const { data: session } = useSession()
+  
+  if (session) {
+    return (
+      <>
+        <h1>Добро пожаловать, {`${session.user.name} / ${session.user.email}`}</h1>
+        <button onClick={() => signOut()}>Выйти</button>
+      </>
+    )
+  }  
 }

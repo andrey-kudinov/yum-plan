@@ -35,9 +35,27 @@
 "plugins": [
     "react"
 ],
+"settings": {
+    "import/resolver": {
+        "node": {
+            "paths": ["src"]
+        }
+    }
+},
 "rules": {
     "react/jsx-filename-extension": "off",
     "react/react-in-jsx-scope": "off",
-    "react/jsx-uses-react": "off"
+    "react/jsx-uses-react": "off",
+    "react/prop-types": "off",
+    "import/no-unresolved": "off",
+    "react/no-unknown-property": [
+        2,
+        {
+          "ignore": [
+            "jsx",
+            "global"
+          ]
+        }
+      ]
 }
 }

@@ -1,10 +1,27 @@
-import PropTypes from 'prop-types'
+import { SessionProvider } from 'next-auth/react'
+import { Raleway } from 'next/font/google'
+import '../styles/styles.css'
 
-App.propTypes = {
-  Component: PropTypes.any,
-  pageProps: PropTypes.any,
-}
+const defaultFont = Raleway({ subsets: ['latin'] })
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+export default function App({
+  Component,
+  pageProps: {session, ...pageProps}
+}) {
+  return (
+    <>
+      <style jsx global>{`
+        html {
+          font-family: ${defaultFont.style.fontFamily};
+        }
+        
+        #__next {
+          height: 100%;
+        }
+      `}</style>
+      <SessionProvider session={session}>
+        <Component {...pageProps} />
+      </SessionProvider>
+    </>
+  )  
 }
