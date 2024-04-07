@@ -2,7 +2,7 @@ import styles from './SigninLayout.module.css'
 
 export default function SigninLayout({ children }) {
   return (
-    <main className={styles['main-signin']}>
+    <main className={styles['signin']}>
       {children}
     </main>
   )

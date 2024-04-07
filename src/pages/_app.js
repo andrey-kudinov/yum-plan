@@ -1,6 +1,6 @@
 import { SessionProvider } from 'next-auth/react'
 import { Raleway } from 'next/font/google'
-import '../styles/styles.css'
+import '../styles/global.css'
 
 const defaultFont = Raleway({ subsets: ['latin'] })
 
