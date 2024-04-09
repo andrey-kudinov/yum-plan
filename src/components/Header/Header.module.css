@@ -1,0 +1,80 @@
+.header {
+  height: 8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  flex-grow: 0;
+  margin-left: 2rem;
+  width: 25rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 100%;
+  height: auto;
+}
+
+.menu-nav {
+  flex-grow: 1;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.menu-item {
+  list-style-type: none;
+}
+
+.menu-link {
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brand-color-4);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.menu-link::after {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 0.125rem;
+  background-color: var(--link-color-hover);
+  content: "";
+  transition: width 0.3s ease-out;
+}
+
+.menu-link:hover::after,
+.menu-link:focus::after {
+  width: 100%;
+}
+
+.user-panel {
+  flex-grow: 0;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-name {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.user-link {
+  margin: 0 0.5rem;
+}

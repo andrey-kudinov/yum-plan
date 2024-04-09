@@ -1,14 +1,13 @@
-import { useSession, signOut } from 'next-auth/react'
+import MainLayout from '@/layouts/MainLayout/MainLayout'
+
+export const metadata = {
+  title: 'YumPlan'
+}
 
 export default function Home() {
-  const { data: session } = useSession()
-  
-  if (session) {
-    return (
-      <>
-        <h1>Добро пожаловать, {`${session.user.name} / ${session.user.email}`}</h1>
-        <button onClick={() => signOut()}>Выйти</button>
-      </>
-    )
-  }  
+  return (
+    <MainLayout>
+      <h2>Главная</h2>
+    </MainLayout>
+  )
 }
