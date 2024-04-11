@@ -1,6 +1,7 @@
 import { getProviders, signIn } from 'next-auth/react'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import Head from 'next/head'
 import Image from 'next/image'
 import signinBackgroundImg from 'public/images/signin-bg.jpg'
 import SigninLayout from '@/layouts/SigninLayout/SigninLayout'
@@ -10,6 +11,9 @@ import styles from './signin.module.css'
 export default function Signin({ providers }) {
   return (
     <SigninLayout>
+      <Head>
+        <title>YumPlan! Войти</title>
+      </Head>
       <div className={styles['signin-container']}>
         <div className={styles['signin-picture']}>
           <Image
