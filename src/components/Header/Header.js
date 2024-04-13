@@ -1,4 +1,5 @@
 import { useSession } from 'next-auth/react'
+import UserPanel from '@/components/UserPanel/UserPanel'
 import Link from 'next/link'
 import Image from 'next/image'
 import headerLogoImg from 'public/images/yum-plan-logo.png'
@@ -31,13 +32,7 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-      <div className={styles['user-panel']}>
-        <span className={styles['user-name']}>{session.user.name}</span>
-        <div>
-          <Link className={styles['user-link']} href="/profile">Настройки</Link>
-          <Link className={styles['user-link']} href="/api/auth/signout">Выйти</Link>
-        </div>
-      </div>
+      <UserPanel session={session}/>
     </div>
   )
 }
