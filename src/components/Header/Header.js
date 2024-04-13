@@ -12,12 +12,14 @@ export default function Header() {
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
-        <Image
-          src={headerLogoImg}
-          alt="YumPlan! logo"
-          className={styles['logo-img']}
-          priority={true}
-        />
+        <Link href="/">
+          <Image
+            src={headerLogoImg}
+            alt="YumPlan! logo"
+            className={styles['logo-img']}
+            priority={true}
+          />
+        </Link>
       </div>
       <nav className={styles['menu-nav']}>
         <ul className={styles.menu}>

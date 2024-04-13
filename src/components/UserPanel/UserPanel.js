@@ -6,6 +6,7 @@ import signoutImg from 'public/icons/signout.svg'
 import styles from './UserPanel.module.css'
 
 export default function UserPanel({ session }) {
+  
   const handleSignOut = async () => {
     "use server"
     await signOut()
@@ -15,7 +16,7 @@ export default function UserPanel({ session }) {
     <div className={styles['user-panel']}>
       <div className={styles['user-avatar']}>
         <div className={styles.container}>
-          Avatar
+          
         </div>
       </div>
       <div className={styles['user-name']}>{session.user.name}</div>
