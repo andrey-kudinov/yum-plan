@@ -1,22 +1,31 @@
 import { useSession } from 'next-auth/react'
+import { useState } from 'react'
 import Head from 'next/head'
 import MainLayout from '@/layouts/MainLayout/MainLayout'
 import styles from './profile.module.css'
 
 export default function Profile() {
+  const [buttonEnabled, setButtonEnabled] = useState(true)
   const { data: session } = useSession()
   if (!session) return
 
   const onSubmit = async (e) => {
     e.preventDefault()
-
-    const formData = new FormData(e.target)
-    const response = await fetch('/api/user-settings-submit', {
-      method: 'POST',
-      body: formData
-    })
-    const data = await response.json()
-    console.log(data)
+    setButtonEnabled(false)
+    const formData = new FormData()
+    formData.set('name', e.target.username.value)
+    
+    try {
+      const response = await fetch('/api/userset', {
+        method: 'POST',
+        body: formData
+      })
+      console.log('response:', response)
+      setButtonEnabled(true)
+    }
+    catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -44,6 +53,7 @@ export default function Profile() {
         <button
           type="submit"
           className={styles['submit-button']}
+          disabled={!buttonEnabled}
         >
           Сохранить
         </button>
