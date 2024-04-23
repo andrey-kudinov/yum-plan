@@ -12,7 +12,7 @@ export default async function handler(req, res) {
       where: { id }
     })
     if (!user) {
-      res.status(404).json({ error: 'Пользователь не найден' })
+      res.status(404).json({ message: 'Пользователь не найден' })
     }
     
     await prisma.user.update({
@@ -20,9 +20,7 @@ export default async function handler(req, res) {
       data: { name }
     })
     res.status(200).json({ message: 'Настройки изменены' })
-    
   } catch (error) {
-    console.log(error)
-    res.status(500).json({ error: `Ошибка: ${error}` })
+    res.status(500).json({ message: `Ошибка: ${error}` })
   }
 }

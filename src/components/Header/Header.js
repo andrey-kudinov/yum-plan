@@ -1,4 +1,3 @@
-import { useSession } from 'next-auth/react'
 import UserPanel from '@/components/UserPanel/UserPanel'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -6,9 +5,6 @@ import headerLogoImg from 'public/images/yum-plan-logo.png'
 import styles from './Header.module.css'
 
 export default function Header() {
-  const { data: session } = useSession()
-  if (!session) return
-  
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
@@ -34,7 +30,7 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-      <UserPanel session={session}/>
+      <UserPanel />
     </div>
   )
 }

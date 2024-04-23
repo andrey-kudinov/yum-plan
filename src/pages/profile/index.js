@@ -12,19 +12,25 @@ export default function Profile() {
   const onSubmit = async (e) => {
     e.preventDefault()
     setButtonEnabled(false)
-    const formData = new FormData()
-    formData.set('name', e.target.username.value)
+    const data = {
+      name: e.target.username.value
+    }
     
     try {
       const response = await fetch('/api/userset', {
         method: 'POST',
-        body: formData
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
-      console.log('response:', response)
+      console.log('response ok:', response.ok)
+      const json = await response.json()
+      console.log('response:', json.message)
       setButtonEnabled(true)
     }
     catch (error) {
-      console.log(error)
+      console.log('error:', error.message)
     }
   }
 
