@@ -1,4 +1,5 @@
-import { useSession } from 'next-auth/react'
+import { UserContext } from '@/providers/UserContext'
+import { useContext } from 'react'
 import { useState } from 'react'
 import Head from 'next/head'
 import MainLayout from '@/layouts/MainLayout/MainLayout'
@@ -6,8 +7,7 @@ import styles from './profile.module.css'
 
 export default function Profile() {
   const [buttonEnabled, setButtonEnabled] = useState(true)
-  const { data: session } = useSession()
-  if (!session) return
+  const session = useContext(UserContext)
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -34,7 +34,7 @@ export default function Profile() {
     }
   }
 
-  return (
+  return (    
     <MainLayout>
       <Head>
         <title>YumPlan! Настройки профиля</title>
@@ -54,7 +54,7 @@ export default function Profile() {
           type="text"
           name="username"
           className={styles.input}
-          defaultValue={session.user.name}
+          defaultValue={session.name}
         />
         <button
           type="submit"

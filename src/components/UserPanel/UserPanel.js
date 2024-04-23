@@ -23,8 +23,8 @@ export default function UserPanel() {
             loader={() => session.image}
             src={session.image}
             alt="Аватар"
-            width={50}
-            height={50}
+            width={80}
+            height={80}
             className={styles['avatar-img']}
           />
         </div>
