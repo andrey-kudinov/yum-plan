@@ -19,6 +19,7 @@ export default async function handler(req, res) {
       where: { id },
       data: { name }
     })
+    
     res.status(200).json({ message: 'Настройки изменены' })
   } catch (error) {
     res.status(500).json({ message: `Ошибка: ${error}` })
