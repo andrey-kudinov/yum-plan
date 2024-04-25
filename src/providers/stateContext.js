@@ -1,21 +1,20 @@
 'use client'
 
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 
 const stateContext = createContext()
 
 export default function StateProvider({ children }) {
   const { data: session } = useSession()
-  //if (!session) return 
+  const [user, setUser] = useState(null)
 
-  const state = {
-    user: session.user,
-    setUser: (user) => this.user = {...user},
-  }
+  useEffect(() => {
+    setUser(session?.user)
+  }, [session?.user])
 
   return (
-    <stateContext.Provider value={state}>
+    <stateContext.Provider value={{ user, setUser }}>
       {children}
     </stateContext.Provider>
   )

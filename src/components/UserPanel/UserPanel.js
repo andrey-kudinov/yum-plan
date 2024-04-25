@@ -8,6 +8,8 @@ import styles from './UserPanel.module.css'
 
 export default function UserPanel() {
   const { user } = useStateContext()
+
+  if (!user) return null
   
   const handleSignOut = async () => {
     "use server"

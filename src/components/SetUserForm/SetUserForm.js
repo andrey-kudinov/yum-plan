@@ -8,6 +8,7 @@ export default function SetUserForm() {
   const [buttonLoading, setButtonLoading] = useState(false)
   const [message, setMessage] = useState('')
   const { user, setUser } = useStateContext()
+  if (!user) return null
   
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -26,7 +27,7 @@ export default function SetUserForm() {
       })
       const json = await response.json()
       setMessage(json.message)
-      setUser(user.data)
+      setUser({...user, name: data.name})
     }
     catch (error) {
       setMessage(error.message)
