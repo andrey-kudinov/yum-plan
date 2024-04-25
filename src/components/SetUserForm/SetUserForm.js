@@ -1,10 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import { useStateContext } from '@/providers/stateContext'
 import styles from './SetUserForm.module.css'
+
 export default function SetUserForm() {
   const [buttonLoading, setButtonLoading] = useState(false)
   const [message, setMessage] = useState('')
+  const { user, setUser } = useStateContext()
   
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -14,7 +17,7 @@ export default function SetUserForm() {
       name: e.target.username.value
     }
     try {
-      const response = await fetch('/api/setuser', {
+      const response = await fetch('/api/changeuser', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
@@ -23,6 +26,7 @@ export default function SetUserForm() {
       })
       const json = await response.json()
       setMessage(json.message)
+      setUser(user.data)
     }
     catch (error) {
       setMessage(error.message)
@@ -45,7 +49,7 @@ export default function SetUserForm() {
         type="text"
         name="username"
         className={styles.input}
-        // defaultValue={session.name}
+        defaultValue={user.name}
       />
       <button
         type="submit"
