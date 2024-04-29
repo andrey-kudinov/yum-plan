@@ -1,14 +1,22 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useStateContext } from '@/providers/stateContext'
 import { z } from 'zod'
+import Image from 'next/image'
 import styles from './SetUserForm.module.css'
 
 export default function SetUserForm() {
+  const [selectedAvatar, setSelectedAvatar] = useState(null)
+  const useravatarRef = useRef()
   const [buttonLoading, setButtonLoading] = useState(false)
   const [message, setMessage] = useState(null)
   const { user, setUser } = useStateContext()
   if (!user) return null
   
+  const onChangeAvatar = (e) => {
+    setSelectedAvatar(e.target.files[0])
+    useravatarRef.current.value = null
+  }
+
   const onSubmit = async (e) => {
     e.preventDefault()
     setButtonLoading(true)
@@ -62,6 +70,47 @@ export default function SetUserForm() {
         defaultValue={user.name}
         required
       />
+      <label
+        htmlFor="useravatar"
+        className={styles.label}
+      >
+        Аватар
+      </label>
+      <div className={styles['avatar-block']}>
+        {selectedAvatar && <>
+          <div className={styles['user-avatar']}>
+            <div className={styles.container}>
+              <Image
+                unoptimized
+                loader={() => URL.createObjectURL(selectedAvatar)}
+                src={URL.createObjectURL(selectedAvatar)}
+                alt="Аватар"
+                width={80}
+                height={80}
+                className={styles['avatar-img']}
+              />
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => setSelectedAvatar(null)}
+            className={styles['avatar-cancel']}
+          >
+            Отмена
+          </button>
+        </>}
+        {!selectedAvatar &&
+          <input
+            ref={useravatarRef}
+            type="file"
+            name="useravatar"
+            title=" "
+            accept="image/*"
+            capture="user"
+            onChange={onChangeAvatar}
+            className={styles['avatar-input']}
+        />}
+      </div>
       <button
         type="submit"
         className={styles['submit-button']}
@@ -70,7 +119,7 @@ export default function SetUserForm() {
         {!buttonLoading && 'Сохранить'}
         {buttonLoading && '...'}
       </button>
-      <div className={styles.message}>{message}</div>
+      <span className={styles.message}>{message}</span>
     </form>
   )
 }
