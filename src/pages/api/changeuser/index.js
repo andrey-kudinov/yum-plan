@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return
   const token = await getToken({ req })
   const id = token.sub
-  const { name } = req.body
+  const { name, image } = req.body
   
   try {
     const user = await prisma.user.findFirst({
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     
     await prisma.user.update({
       where: { id },
-      data: { name }
+      data: { name, image }
     })
     
     res.status(200).json({ message: 'Настройки изменены' })

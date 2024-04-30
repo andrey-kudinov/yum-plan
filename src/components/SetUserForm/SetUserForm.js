@@ -12,6 +12,15 @@ export default function SetUserForm() {
   const { user, setUser } = useStateContext()
   if (!user) return null
   
+  const toBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = (error) => reject(error)
+    })
+  }
+
   const onChangeAvatar = (e) => {
     setSelectedAvatar(e.target.files[0])
     useravatarRef.current.value = null
@@ -23,7 +32,8 @@ export default function SetUserForm() {
     setMessage(null)
     
     const data = {
-      name: e.target.username.value.trim()
+      name: e.target.username.value.trim(),
+      image: selectedAvatar ? await toBase64(selectedAvatar) : user.image
     }
 
     try {
