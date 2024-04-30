@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { useStateContext } from '@/providers/stateContext'
 import { z } from 'zod'
-import Image from 'next/image'
+import UserAvatar from '@/components/UserAvatar/UserAvatar'
 import styles from './SetUserForm.module.css'
 
 export default function SetUserForm() {
@@ -74,31 +74,9 @@ export default function SetUserForm() {
         htmlFor="useravatar"
         className={styles.label}
       >
-        Аватар
+        Сменить аватар
       </label>
       <div className={styles['avatar-block']}>
-        {selectedAvatar && <>
-          <div className={styles['user-avatar']}>
-            <div className={styles.container}>
-              <Image
-                unoptimized
-                loader={() => URL.createObjectURL(selectedAvatar)}
-                src={URL.createObjectURL(selectedAvatar)}
-                alt="Аватар"
-                width={80}
-                height={80}
-                className={styles['avatar-img']}
-              />
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={() => setSelectedAvatar(null)}
-            className={styles['avatar-cancel']}
-          >
-            Отмена
-          </button>
-        </>}
         {!selectedAvatar &&
           <input
             ref={useravatarRef}
@@ -110,6 +88,16 @@ export default function SetUserForm() {
             onChange={onChangeAvatar}
             className={styles['avatar-input']}
         />}
+        {selectedAvatar && <>
+          <UserAvatar avatar={selectedAvatar} />
+          <button
+            type="button"
+            onClick={() => setSelectedAvatar(null)}
+            className={styles['avatar-cancel']}
+          >
+            Отмена
+          </button>
+        </>}
       </div>
       <button
         type="submit"

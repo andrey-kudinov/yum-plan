@@ -2,13 +2,13 @@ import { signOut } from 'next-auth/react'
 import { useStateContext } from '@/providers/stateContext'
 import Link from 'next/link'
 import Image from 'next/image'
+import UserAvatar from '@/components/UserAvatar/UserAvatar'
 import settingsImg from 'public/icons/settings.svg'
 import signoutImg from 'public/icons/signout.svg'
 import styles from './UserPanel.module.css'
 
 export default function UserPanel() {
   const { user } = useStateContext()
-
   if (!user) return null
   
   const handleSignOut = async () => {
@@ -18,19 +18,7 @@ export default function UserPanel() {
   
   return (
     <div className={styles['user-panel']}>
-      <div className={styles['user-avatar']}>
-        <div className={styles.container}>
-          <Image
-            unoptimized
-            loader={() => user.image}
-            src={user.image}
-            alt="Аватар"
-            width={80}
-            height={80}
-            className={styles['avatar-img']}
-          />
-        </div>
-      </div>
+      <UserAvatar avatar={user.image} />
       <div className={styles['user-name']}>
         {user.name}
       </div>
