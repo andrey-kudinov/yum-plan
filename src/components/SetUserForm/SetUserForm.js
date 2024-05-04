@@ -54,7 +54,7 @@ export default function SetUserForm() {
       })
       const json = await response.json()
       setMessage(json.message)
-      setUser({...user, name: data.name})
+      setUser({...user, name: data.name, image: data.image})
     }
     catch (error) {
       setMessage(error.map(e => e.message).join('<br>'))

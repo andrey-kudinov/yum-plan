@@ -21,6 +21,23 @@ export const authOptions = {
 
   pages: {
     signIn: '/signin',
+  },
+
+  callbacks: {
+    async jwt({ token, account, profile }) {
+      if (account) token.id = profile.id
+      return token
+    },
+    
+    async session({ session, token }) {
+      const { name, image } = await prisma.user.findUnique({
+        where: { id: token.sub },
+      })
+      session.user.name = name
+      session.user.image = image
+      
+      return session
+    }
   }
 }
 

@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   const { name, image } = req.body
   
   try {
-    const user = await prisma.user.findFirst({
+    const user = await prisma.user.findUnique({
       where: { id }
     })
     if (!user) {
