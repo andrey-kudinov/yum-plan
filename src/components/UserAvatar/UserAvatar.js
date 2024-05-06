@@ -11,7 +11,7 @@ export default function UserAvatar({ avatar }) {
             avatar : URL.createObjectURL(avatar)}
           src={typeof avatar === 'string' ?
             avatar : URL.createObjectURL(avatar)}
-          alt="Аватар"
+          alt="Avatar"
           width={80}
           height={80}
           className={styles['avatar-img']}

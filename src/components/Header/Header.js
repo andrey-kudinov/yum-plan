@@ -1,7 +1,7 @@
 import UserPanel from '@/components/UserPanel/UserPanel'
 import Link from 'next/link'
 import Image from 'next/image'
-import headerLogoImg from 'public/images/yum-plan-logo.png'
+import headerImg from 'public/images/yum-plan-logo.png'
 import styles from './Header.module.css'
 
 export default function Header() {
@@ -10,7 +10,7 @@ export default function Header() {
       <div className={styles.logo}>
         <Link href="/">
           <Image
-            src={headerLogoImg}
+            src={headerImg}
             alt="YumPlan! logo"
             className={styles['logo-img']}
             priority={true}

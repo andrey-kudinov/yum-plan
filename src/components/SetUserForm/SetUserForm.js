@@ -6,7 +6,7 @@ import styles from './SetUserForm.module.css'
 
 export default function SetUserForm() {
   const [selectedAvatar, setSelectedAvatar] = useState(null)
-  const useravatarRef = useRef()
+  const userAvatarRef = useRef()
   const [buttonLoading, setButtonLoading] = useState(false)
   const [message, setMessage] = useState(null)
   const { user, setUser } = useStateContext()
@@ -23,7 +23,7 @@ export default function SetUserForm() {
 
   const onChangeAvatar = (e) => {
     setSelectedAvatar(e.target.files[0])
-    useravatarRef.current.value = null
+    userAvatarRef.current.value = null
   }
 
   const onSubmit = async (e) => {
@@ -89,7 +89,7 @@ export default function SetUserForm() {
       <div className={styles['avatar-block']}>
         {!selectedAvatar &&
           <input
-            ref={useravatarRef}
+            ref={userAvatarRef}
             type="file"
             name="useravatar"
             title=" "

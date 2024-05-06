@@ -48,7 +48,7 @@
 	padding: .625rem .3125rem;
 }
 
-.avatar-input:focus {
+.avatar-input:focus-visible {
   box-shadow: 0 0 0 0.2rem var(--brand-color-2);
 }
 
