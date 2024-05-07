@@ -59,22 +59,3 @@
 .menu-link:focus::after {
   width: 100%;
 }
-
-.user-panel {
-  flex-grow: 0;
-  width: 20rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-
-.user-name {
-  font-size: 1.125rem;
-  font-weight: bold;
-}
-
-.user-link {
-  margin: 0 0.5rem;
-}

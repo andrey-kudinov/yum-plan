@@ -1,0 +1,79 @@
+.form {
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.label {
+  font-size: 1.25rem;
+}
+
+.input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--brand-color-4);
+  outline: none;
+}
+
+.error {
+  border-color: darkred;
+  background-color: lightpink;
+}
+
+.avatar-block {
+  display: grid;
+  grid-template: 'avatar button' / 1fr 1fr;
+  gap: 0.5rem;
+  height: 7rem;
+}
+
+.avatar-input {
+  grid-area: button;
+  justify-self: end;
+  width: 10rem;
+  height: 2.5rem;
+  color: transparent;
+  outline: none;
+}
+
+.avatar-input::file-selector-button {
+  width: 10rem;
+  height: 2.5rem;
+  cursor: pointer;
+	outline: none;
+	font-size: 1rem;
+	vertical-align: middle;
+	color: rgb(255 255 255);
+	text-align: center;
+	border-radius: 4px;
+	border: none;
+  background-color: var(--brand-color-4);
+	padding: .625rem .3125rem;
+}
+
+.avatar-input:focus-visible {
+  box-shadow: 0 0 0 0.2rem var(--brand-color-2);
+}
+
+.avatar-cancel {
+  grid-area: button;
+  justify-self: right;
+  width: 10rem;
+  height: 2.5rem;
+  cursor: pointer;
+	outline: none;
+	font-size: 1rem;
+	vertical-align: middle;
+	color: rgb(255 255 255);
+	text-align: center;
+	border-radius: 4px;
+	border: none;
+  background-color: var(--brand-color-4);
+	padding: .625rem .3125rem;
+}
+
+.message {
+  font-size: 0.875rem;
+}

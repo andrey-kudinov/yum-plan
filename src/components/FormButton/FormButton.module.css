@@ -1,0 +1,42 @@
+.button {
+  position: relative;
+  min-width: 10rem;
+  max-width: fit-content;
+  height: 3rem;
+  margin: 1rem 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.5rem;
+  outline: none;
+  background-color: #b36969;
+  color: white;
+  text-align: center;
+  font-size: 1.5rem;
+}
+  
+.button:hover {
+  background-color: #c78686;
+}
+
+.loader::after {
+  content: "";
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  inset: 0;
+  margin: auto;
+  border: 4px solid transparent;
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spinner 1s ease infinite;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}

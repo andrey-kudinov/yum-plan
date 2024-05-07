@@ -1,5 +1,6 @@
 import { SessionProvider } from 'next-auth/react'
 import { Raleway } from 'next/font/google'
+import StateProvider from '@/providers/stateContext'
 import '../styles/global.css'
 
 const defaultFont = Raleway({ subsets: ['latin'] })
@@ -20,7 +21,7 @@ export default function App({
         }
       `}</style>
       <SessionProvider session={session}>
-        <Component {...pageProps} />
+        <StateProvider><Component {...pageProps} /></StateProvider>
       </SessionProvider>
     </>
   )  

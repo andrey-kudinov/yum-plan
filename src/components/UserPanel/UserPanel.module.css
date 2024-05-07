@@ -1,0 +1,43 @@
+.user-panel {
+  flex-grow: 0;
+  padding: 1rem 1rem 0 0;
+  width: 22rem;
+  height: 100%;
+  display: grid;
+  grid-template:
+    'avatar name'
+    'avatar links'
+    / 6rem auto;
+  gap: 0.5rem;
+}
+
+.user-name {
+  grid-area: name;
+  font-size: 1.125rem;
+  font-weight: bold;
+  display: flex;
+  align-items: flex-end;
+}
+
+.user-links {
+  grid-area: links;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.settings-img,
+.signout-img {
+  transition: all 0.3s ease;
+}
+
+.settings-img:hover,
+.signout-img:hover {
+  filter: brightness(120%) contrast(200%);
+}
+
+.signout-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
