@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { useStateContext } from '@/providers/stateContext'
 import { z } from 'zod'
 import UserAvatar from '@/components/UserAvatar/UserAvatar'
+import FormButton from '@/components/FormButton/FormButton'
 import styles from './SetUserForm.module.css'
 
 export default function SetUserForm() {
@@ -9,6 +10,7 @@ export default function SetUserForm() {
   const userAvatarRef = useRef()
   const [buttonLoading, setButtonLoading] = useState(false)
   const [message, setMessage] = useState(null)
+  const [nameError, setNameError] = useState(false)
   const { user, setUser } = useStateContext()
   if (!user) return null
   
@@ -29,6 +31,7 @@ export default function SetUserForm() {
   const onSubmit = async (e) => {
     e.preventDefault()
     setButtonLoading(true)
+    setNameError(false)
     setMessage(null)
     
     const data = {
@@ -43,7 +46,10 @@ export default function SetUserForm() {
           .max(30, 'Имя не более 30 символов')
       }).safeParse(data)
       
-      if(!result.success) throw result.error.issues
+      if(!result.success) {
+        setNameError(true)  
+        throw result.error.issues
+      }
 
       const response = await fetch('/api/changeuser', {
         method: 'POST',
@@ -76,7 +82,7 @@ export default function SetUserForm() {
       <input
         type="text"
         name="username"
-        className={styles.input}
+        className={`${styles.input} ${nameError ? styles.error : ''}`}
         defaultValue={user.name}
         required
       />
@@ -109,14 +115,10 @@ export default function SetUserForm() {
           </button>
         </>}
       </div>
-      <button
-        type="submit"
-        className={styles['submit-button']}
-        disabled={buttonLoading}
-      >
-        {!buttonLoading && 'Сохранить'}
-        {buttonLoading && '...'}
-      </button>
+      <FormButton
+        caption="Сохранить"
+        loading={buttonLoading}
+      />
       <span className={styles.message}>{message}</span>
     </form>
   )
