@@ -1,15 +1,33 @@
 .header {
-  height: 8rem;
+  position: relative;
+  margin: 8px auto;
+
+  @media (max-width: 1024px) {
+    min-height: 40px;
+  }
+}
+
+.inner {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 1024px) {
+    position: absolute;
+    background: var(--brand-color-1);
+    transform: translateX(calc(-100% - 16px));
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    transition: transform 0.3s ease-in-out;
+  }
+}
+
+.open {
+  transform: translateX(0);
 }
 
 .logo {
-  flex-grow: 0;
-  margin-left: 2rem;
-  width: 25rem;
   height: 100%;
   display: flex;
   align-items: center;
@@ -20,15 +38,15 @@
   height: auto;
 }
 
-.menu-nav {
-  flex-grow: 1;
-}
-
 .menu {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  gap: 16px;
   align-items: center;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
 }
 
 .menu-item {
@@ -58,4 +76,157 @@
 .menu-link:hover::after,
 .menu-link:focus::after {
   width: 100%;
+}
+
+.burger-container {
+  display: none;
+
+  @media (max-width: 1024px) {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+}
+
+.burger {
+  position: relative;
+	height: 40px;
+  gap: 16px;
+  position: absolute;
+}
+
+.burger-label {
+	font-size: 1rem;
+}
+
+.burger input {
+	display: none;
+}
+
+.burger label {
+	position: relative;
+	width: 40px;
+	height: 40px;
+	display: block;
+	cursor: pointer;
+	background: transparent;
+}
+
+.burger label:before,
+.burger input:checked + label:before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	margin-top: -2px;
+	width: 40px;
+	height: 4px;
+	border-radius: 2px;
+	background: #fafafa;
+}
+
+.burger label:before {
+	animation: animationOneReverse 1s ease forwards;
+}
+
+@keyframes animationOneReverse {
+	0% { transform: rotate(315deg); }
+	25% { transform: rotate(360deg); }
+	50%, 100% { transform: rotate(0deg); }
+}
+
+.burger input:checked + label:before {
+	animation: animationOne 1s ease forwards;
+}
+
+@keyframes animationOne {
+	0%, 50% { transform: rotate(0deg); }
+	75% { transform: rotate(360deg); }
+	100% { transform: rotate(315deg); }
+}
+
+.burger label:after,
+.burger input:checked + label:after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	margin-top: -2px;
+	width: 40px;
+	height: 4px;
+	border-radius: 2px;
+	background: #fafafa;
+}
+
+.burger label:after {
+	animation: animationTwoReverse 1s ease forwards;
+}
+
+@keyframes animationTwoReverse {
+	0% { transform: rotate(405deg); }
+	25% { transform: rotate(450deg); }
+	50%, 100% { transform: rotate(0deg); }
+}
+
+.burger input:checked + label:after {
+	-webkit-animation: animationTwo 1s ease forwards;
+	animation: animationTwo 1s ease forwards;
+}
+
+@keyframes animationTwo {
+	0%, 50% { transform: rotate(0deg); }
+	75% { transform: rotate(450deg); }
+	100% { transform: rotate(405deg); }
+}
+
+.burger label .burger:before {
+	content: '';
+	position: absolute;
+	top: 6px;
+	width: 40px;
+	height: 4px;
+	border-radius: 2px;
+	background: #fafafa;
+	animation: animationBurgerTopReverse 1s ease forwards;
+}
+
+@keyframes animationBurgerTopReverse {
+	0%, 50% { transform: translateY(12px); opacity: 0; }
+	51% { transform: translateY(12px); opacity: 1; }
+	100% { transform: translateY(0px); opacity: 1; }
+}
+
+.burger input:checked + label .burger:before {
+	animation: animationBurgerTop 1s ease forwards;
+}
+
+@keyframes animationBurgerTop {
+	0% { transform: translateY(0px); opacity: 1; }
+	50% { transform: translateY(12px); opacity: 1; }
+	51%, 100% { transform: translateY(12px); opacity: 0; }
+}
+
+.burger label .burger:after {
+	content: '';
+	position: absolute;
+	bottom: 6px;
+	width: 40px;
+	height: 4px;
+	border-radius: 2px;
+	background: #fafafa;
+	animation: animationBurgerBottomReverse 1s ease forwards;
+}
+
+@keyframes animationBurgerBottomReverse {
+	0%, 50% { transform: translateY(-12px); opacity: 0; }
+	51% { transform: translateY(-12px); opacity: 1; }
+	100% { transform: translateY(0px); opacity: 1; }
+}
+
+.burger input:checked + label .burger:after {
+	animation: animationBurgerBottom 1s ease forwards;
+}
+
+@keyframes animationBurgerBottom {
+	0% { transform: translateY(0px); opacity: 1; }
+	50% { transform: translateY(-12px); opacity: 1; }
+	51%, 100% { transform: translateY(-12px); opacity: 0; }
 }
