@@ -1,12 +1,12 @@
 .button {
   position: relative;
-  min-width: 10rem;
+  min-width: 160px;
   max-width: fit-content;
-  height: 3rem;
-  margin: 1rem 0;
+  height: 48px;
+  margin: 16px 0;
   cursor: pointer;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   outline: none;
   background-color: #b36969;
   color: white;
