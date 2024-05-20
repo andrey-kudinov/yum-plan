@@ -136,8 +136,6 @@
   background: var(--brand-color-5);
 }
 
-
-
 @keyframes animation-one-reverse {
   0% { transform: rotate(315deg); }
   25% { transform: rotate(360deg); }

@@ -3,7 +3,7 @@
   grid-template:
     'avatar name'
     'avatar links'
-    / 6rem auto;
+    / 96px auto;
   gap: 8px;
 }
 

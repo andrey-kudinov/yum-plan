@@ -43,7 +43,7 @@ a:hover {
 }
 
 a:focus {
-  outline: var(--brand-color-3) dotted .0625rem;
+  outline: var(--brand-color-3) dotted 1px;
 }
 
 h1 {
