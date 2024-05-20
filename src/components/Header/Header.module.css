@@ -15,7 +15,7 @@
   @media (width <= 1024px) {
     z-index: 10;
     position: absolute;
-    height: 100vh;
+    min-height: 100vh;
     background: var(--brand-color-1);
     transform: translateX(calc(-100% - 16px));
     flex-direction: column;
