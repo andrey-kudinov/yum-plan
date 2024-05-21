@@ -32,7 +32,7 @@ export default function Header() {
               <Link className={styles['menu-link']} href="/">Купить</Link>
             </li>
             <li className={styles['menu-item']}>
-              <Link className={styles['menu-link']} href="/">Рецепты</Link>
+              <Link className={styles['menu-link']} href="/recipes">Рецепты</Link>
             </li>
           </ul>
         </nav>
