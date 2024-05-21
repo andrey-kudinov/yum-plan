@@ -1,0 +1,49 @@
+.form {
+  min-width: 400px;
+  max-width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: auto;
+  gap: 16px;
+}
+
+.form label {
+  justify-self: right;
+  padding-top: 2px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form input,
+.form textarea,
+.form select {
+  justify-self: left;
+  outline: none;
+  min-width: 300px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--brand-color-4);
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--primary-text-color);
+}
+
+.form textarea {
+  resize: none;
+  height: auto;
+}
+
+.form input[type="number"] {
+  min-width: 80px;
+  max-width: 80px;
+}
+
+.form input[type="checkbox"] {
+  min-width: 20px;
+  max-width: 20px;
+}
+
+.form button[type="submit"] {
+  grid-column: 2 / 2;
+}
