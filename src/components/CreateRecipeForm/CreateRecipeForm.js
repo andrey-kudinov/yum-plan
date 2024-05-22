@@ -1,10 +1,28 @@
+import { useState } from 'react'
 import FormButton from '@/components/FormButton/FormButton'
 import styles from './CreateRecipeForm.module.css'
 
 export default function CreateRecipeForm() {
+  const [buttonLoading, setButtonLoading] = useState(false)
+  const [formValues, setFormValues] = useState({
+    name: null,
+    description: null,
+    picture: null,
+    duration: null,
+    ingredients: [],
+    public: false,
+  })
+
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    setButtonLoading(true)
+
+    setButtonLoading(false)
+  }
+  
   return(
     <form
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={onSubmit}
       className={styles.form}
     >
       <label
@@ -16,6 +34,7 @@ export default function CreateRecipeForm() {
         type="text"
         name="name"
         placeholder="Например, Омлет с томатами быстрый"
+        onChange={(e) => setFormValues({...formValues, name: e.target.value})}
       />
       <label
         htmlFor="description"
@@ -26,6 +45,7 @@ export default function CreateRecipeForm() {
         name="description"
         rows="10"
         placeholder="Опишитие кратко процесс приготовления по шагам (необязательно)"
+        onChange={(e) => setFormValues({...formValues, description: e.target.value})}
       />
       <label
         htmlFor="picture"
@@ -54,6 +74,11 @@ export default function CreateRecipeForm() {
       </label>
       <select
         name="ingredients"
+        multiple
+        onChange={(e) => setFormValues({
+          ...formValues,
+          ingredients: Array.from(e.target.selectedOptions)
+          .map(option => option.text)})}
       >
         <option value={'val'}>1 морковка</option>
         <option value={'val'}>2 капуста</option>
@@ -67,10 +92,11 @@ export default function CreateRecipeForm() {
       <input
         type="checkbox"
         name="public"
+        onChange={(e) => setFormValues({...formValues, public: e.target.checked})}
       />
       <FormButton
         caption="Добавить"
-        loading={false}
+        loading={buttonLoading}
       />       
     </form>
   )
