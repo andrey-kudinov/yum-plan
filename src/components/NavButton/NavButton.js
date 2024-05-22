@@ -6,7 +6,8 @@ export default function NavButton({ button, href, children }) {
   
   if (button) return (
     <Link
-    href={href}
+      className={styles.link}
+      href={href}
     >
       <button className={styles.button}>
         {children}
@@ -16,6 +17,7 @@ export default function NavButton({ button, href, children }) {
   
   return (
     <Link
+      className={styles.link}
       href={href}
     >
       {children}

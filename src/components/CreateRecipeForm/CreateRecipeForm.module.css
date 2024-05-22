@@ -48,3 +48,9 @@
 .form button[type="submit"] {
   grid-column: 2 / 2;
 }
+
+.form input.error {
+  background-color: rgb(253 193 193);
+  border-color: darkred;
+  transition: all 0.5s ease;
+}

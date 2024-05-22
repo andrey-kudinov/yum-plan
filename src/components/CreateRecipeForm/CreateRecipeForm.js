@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { z } from 'zod'
 import FormButton from '@/components/FormButton/FormButton'
 import styles from './CreateRecipeForm.module.css'
 
 export default function CreateRecipeForm() {
+  const [nameError, setNameError] = useState(null)
   const [buttonLoading, setButtonLoading] = useState(false)
   const [formValues, setFormValues] = useState({
     name: null,
@@ -12,6 +14,20 @@ export default function CreateRecipeForm() {
     ingredients: [],
     public: false,
   })
+
+  const onChangeName = (e) => {
+    const name = e.target.value
+    const result = z.string()
+    .min(1, 'Название должно содержать не менее одного символа')
+    .max(50, 'Название должно содержать не более 50 символов')
+    .safeParse(name)
+    
+    if(!result.success) setNameError(true)
+    else {
+      setFormValues({...formValues, name })
+      setNameError(null)
+    }
+  }
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -34,7 +50,9 @@ export default function CreateRecipeForm() {
         type="text"
         name="name"
         placeholder="Например, Омлет с томатами быстрый"
-        onChange={(e) => setFormValues({...formValues, name: e.target.value})}
+        required
+        onChange={onChangeName}
+        className={nameError !== null ? styles.error : null}
       />
       <label
         htmlFor="description"
