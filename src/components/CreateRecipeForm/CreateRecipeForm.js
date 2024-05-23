@@ -1,9 +1,10 @@
-import { useState } from 'react'
-// import { z } from 'zod'
+import { useEffect, useState } from 'react'
+import { z } from 'zod'
 import FormButton from '@/components/FormButton/FormButton'
 import styles from './CreateRecipeForm.module.css'
 
 export default function CreateRecipeForm() {
+  const [initialRender, setInitialRender] = useState(true)
   const [buttonLoading, setButtonLoading] = useState(false)
   const [formValues, setFormValues] = useState({
     name: {value: null, error: null},
@@ -13,6 +14,35 @@ export default function CreateRecipeForm() {
     ingredients: {value: [], error: null},
     public: {value: false, error: null},
   })
+
+  useEffect(() => {
+    if (initialRender) {
+      setInitialRender(false)
+      return
+    }
+    
+    console.log(formValues)
+
+    const result = z.object({
+      name: z.object({
+        value: z.string()
+        .min(1, 'Название должно содержать не менее одного символа')
+        .max(50, 'Название должно содержать не более 50 символов')
+      }),
+      duration: z.object({
+        value: z.number()
+        .min(10, 'Продолжительность должна быть не менее 10 минут')
+        .max(180, 'Продолжительность должна быть не более 180 минут')
+      }),
+      // ingredients: z.object({
+      //   value: z.array()
+      //   .min(1, 'Укажите не менее одного ингредиента')
+      // }),
+    }).safeParse(formValues)
+
+    console.log(result)
+
+  }, [formValues])
 
   // const validateForm = () => {
   //   const result = z.string()
@@ -93,7 +123,7 @@ export default function CreateRecipeForm() {
           ...formValues,
           duration: {
             ...formValues.duration,
-            value: e.target.value
+            value: Number(e.target.value)
         }})}
       />
       <label
