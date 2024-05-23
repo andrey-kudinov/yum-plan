@@ -1,33 +1,28 @@
 import { useState } from 'react'
-import { z } from 'zod'
+// import { z } from 'zod'
 import FormButton from '@/components/FormButton/FormButton'
 import styles from './CreateRecipeForm.module.css'
 
 export default function CreateRecipeForm() {
-  const [nameError, setNameError] = useState(null)
   const [buttonLoading, setButtonLoading] = useState(false)
   const [formValues, setFormValues] = useState({
-    name: null,
-    description: null,
-    picture: null,
-    duration: null,
-    ingredients: [],
-    public: false,
+    name: {value: null, error: null},
+    description: {value: null, error: null},
+    picture: {value: null, error: null},
+    duration: {value: null, error: null},
+    ingredients: {value: [], error: null},
+    public: {value: false, error: null},
   })
 
-  const onChangeName = (e) => {
-    const name = e.target.value
-    const result = z.string()
-    .min(1, 'Название должно содержать не менее одного символа')
-    .max(50, 'Название должно содержать не более 50 символов')
-    .safeParse(name)
+  // const validateForm = () => {
+  //   const result = z.string()
+  //   .min(1, 'Название должно содержать не менее одного символа')
+  //   .max(50, 'Название должно содержать не более 50 символов')
+  //   .safeParse()
     
-    if(!result.success) setNameError(true)
-    else {
-      setFormValues({...formValues, name })
-      setNameError(null)
-    }
-  }
+  //   if(!result.success) setNameError(true)
+    
+  // }
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -51,8 +46,13 @@ export default function CreateRecipeForm() {
         name="name"
         placeholder="Например, Омлет с томатами быстрый"
         required
-        onChange={onChangeName}
-        className={nameError !== null ? styles.error : null}
+        onChange={(e) => setFormValues({
+          ...formValues,
+          name: {
+            ...formValues.name,
+            value: e.target.value
+          }})}
+        className={formValues.name.error && styles.error}
       />
       <label
         htmlFor="description"
@@ -63,7 +63,12 @@ export default function CreateRecipeForm() {
         name="description"
         rows="10"
         placeholder="Опишитие кратко процесс приготовления по шагам (необязательно)"
-        onChange={(e) => setFormValues({...formValues, description: e.target.value})}
+        onChange={(e) => setFormValues({
+          ...formValues,
+          description: {
+            ...formValues.description,
+            value: e.target.value
+        }})}
       />
       <label
         htmlFor="picture"
@@ -84,6 +89,12 @@ export default function CreateRecipeForm() {
         min="10"
         max="180"
         name="duration"
+        onChange={(e) => setFormValues({
+          ...formValues,
+          duration: {
+            ...formValues.duration,
+            value: e.target.value
+        }})}
       />
       <label
         htmlFor="ingredients"
@@ -95,8 +106,11 @@ export default function CreateRecipeForm() {
         multiple
         onChange={(e) => setFormValues({
           ...formValues,
-          ingredients: Array.from(e.target.selectedOptions)
-          .map(option => option.text)})}
+          ingredients: {
+            ...formValues.ingredients,
+            value: Array.from(e.target.selectedOptions)
+                        .map(option => option.text)
+        }})}
       >
         <option value={'val'}>1 морковка</option>
         <option value={'val'}>2 капуста</option>
@@ -110,7 +124,12 @@ export default function CreateRecipeForm() {
       <input
         type="checkbox"
         name="public"
-        onChange={(e) => setFormValues({...formValues, public: e.target.checked})}
+        onChange={(e) => setFormValues({
+          ...formValues,
+          public: {
+            ...formValues.public,
+            value: e.target.checked
+        }})}
       />
       <FormButton
         caption="Добавить"
