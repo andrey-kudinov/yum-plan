@@ -17,6 +17,11 @@ export default function CreateRecipeForm() {
   const [formErrors, setFormErrors] = useState()
 
   useEffect(() => {
+    setFormErrors({
+      name: false,
+      duration: false
+    })
+    
     if (initialRender) {
       setInitialRender(false)
       return
@@ -34,10 +39,6 @@ export default function CreateRecipeForm() {
 
     if(result.success) return
 
-    setFormErrors({
-      name: false,
-      duration: false
-    })
     for (const error of result.error.issues) {
       setFormErrors(prev => ({
         ...prev,
@@ -50,7 +51,7 @@ export default function CreateRecipeForm() {
   const onSubmit = async (e) => {
     e.preventDefault()
     setButtonLoading(true)
-
+    // TO DO: Adding to database
     setButtonLoading(false)
   }
   
@@ -75,6 +76,7 @@ export default function CreateRecipeForm() {
         }))}
         className={formErrors?.name && styles.error}
       />
+      <span>{formErrors?.name}</span>
       <label
         htmlFor="description"
       >
@@ -94,6 +96,7 @@ export default function CreateRecipeForm() {
       >
         Изображение
       </label>
+      {/* TO DO: Replace with custom picture component (tobase64) */}
       <input
         type="file"
         name="picture"
@@ -112,7 +115,9 @@ export default function CreateRecipeForm() {
           ...prev,
           duration: Number(e.target.value)
         }))}
+        className={formErrors?.duration && styles.error}
       />
+      <span>{formErrors?.duration}</span>
       <label
         htmlFor="ingredients"
       >
@@ -127,6 +132,7 @@ export default function CreateRecipeForm() {
                       .map(option => option.text)
         }))}
       >
+        {/* TO DO: Get options from database */}
         <option value={'val1'}>1 морковка</option>
         <option value={'val2'}>2 капуста</option>
         <option value={'val3'}>3 свекла</option>
