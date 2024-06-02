@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { z } from 'zod'
 import FormButton from '@/components/FormButton/FormButton'
 import styles from './CreateRecipeForm.module.css'
 
 export default function CreateRecipeForm() {
-  const [initialRender, setInitialRender] = useState(true)
   const [buttonLoading, setButtonLoading] = useState(false)
   const [formValues, setFormValues] = useState({
     name: null,
@@ -16,17 +15,14 @@ export default function CreateRecipeForm() {
   })
   const [formErrors, setFormErrors] = useState()
 
-  useEffect(() => {
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    setButtonLoading(true)
     setFormErrors({
       name: false,
       duration: false
     })
-    
-    if (initialRender) {
-      setInitialRender(false)
-      return
-    }
-    
+
     const result = z.object({
       name: z.string()
         .min(1, 'Название должно содержать не менее одного символа')
@@ -37,22 +33,22 @@ export default function CreateRecipeForm() {
         .max(180, 'Продолжительность должна быть не более 180 минут')
     }).safeParse(formValues)
 
-    if(result.success) return
-
-    for (const error of result.error.issues) {
-      setFormErrors(prev => ({
-        ...prev,
-        [error.path[0]]: error.message
-      }))
+    if(result.success) {
+      setTimeout(() => {
+        console.log('Receipe created:', formValues)
+        setButtonLoading(false)
+      }, 2000)
+      // TO DO: Adding to database
     }
-
-  }, [formValues])
-
-  const onSubmit = async (e) => {
-    e.preventDefault()
-    setButtonLoading(true)
-    // TO DO: Adding to database
-    setButtonLoading(false)
+    else {
+      for (const error of result.error.issues) {
+        setFormErrors(prev => ({
+          ...prev,
+          [error.path[0]]: error.message
+        }))
+      }
+      setButtonLoading(false)
+    }
   }
   
   return(
@@ -110,6 +106,8 @@ export default function CreateRecipeForm() {
         type="number"
         min="10"
         max="180"
+        placeholder="10"
+        required
         name="duration"
         onChange={(e) => setFormValues(prev => ({
           ...prev,
