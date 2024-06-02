@@ -62,7 +62,8 @@
   list-style-type: none;
 }
 
-.menu-link {
+.menu-link,
+.menu-link:visited {
   position: relative;
   font-size: 1.5rem;
   font-weight: 600;
